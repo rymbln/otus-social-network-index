@@ -104,8 +104,8 @@ public class DatabaseContext : IDatabaseContext, IDisposable
             sql += "WHERE first_name LIKE @firstname AND second_name LIKE @secondname ORDER BY id;";
             items = con.Query<UserEntity>(sql, new
             {
-                @firstname = $"{firstName}%",
-                @secondname = $"{lastName}%",
+                firstname = $"{firstName}%",
+                secondname = $"{lastName}%",
             });
         }
         else if (!string.IsNullOrEmpty(firstName))
@@ -113,7 +113,7 @@ public class DatabaseContext : IDatabaseContext, IDisposable
             sql += "WHERE first_name LIKE @firstname ORDER BY id;";
             items = con.Query<UserEntity>(sql, new
             {
-                @firstname = $"{firstName}%"
+                firstname = $"{firstName}%"
             });
         }
         else if (!string.IsNullOrEmpty(lastName))
@@ -121,7 +121,7 @@ public class DatabaseContext : IDatabaseContext, IDisposable
             sql += "WHERE second_name LIKE @secondname ORDER BY id;";
             items = con.Query<UserEntity>(sql, new
             {
-                @secondname = $"{lastName}%"
+                secondname = $"{lastName}%"
             });
         }
         else
@@ -132,12 +132,12 @@ public class DatabaseContext : IDatabaseContext, IDisposable
             sql += "WHERE first_name LIKE @firstname AND second_name LIKE @secondname ORDER BY id;";
             items = con.Query<UserEntity>(sql, new
             {
-                @firstname = $"{firstName}%",
-                @secondname = $"{lastName}%",
+                firstname = $"{firstName}%",
+                secondname = $"{lastName}%",
             });
-            items = con.Query<UserEntity>(sql);
+        
         }
-
+       // items = con.Query<UserEntity>(sql);
         return (true, "OK", items.ToList());
     }
 }
